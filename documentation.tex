@@ -1,0 +1,170 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{hyperref}
+
+% Define colors for code listings
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Listing style for MATLAB code
+\lstdefinestyle{matlab}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=MATLAB
+}
+
+\title{Wedge Impedance Analysis Program Documentation}
+\author{Djamel Ouais and Hussain Alqahtani}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Overview}
+This documentation describes a MATLAB-based program designed for calculating acoustic impedance and wave fields around a wedge structure. The program implements various mathematical functions to compute scattered and direct wave fields using complex acoustic calculations.
+
+\section{Key Components}
+
+\subsection{Main Control Script (testscipt.m)}
+The main script initializes and controls the program execution with the following components:
+\begin{itemize}
+    \item Global parameters initialization including:
+    \begin{itemize}
+        \item Geometric parameters ($r$, $\phi$, $r'$, $\phi'$)
+        \item Wave parameters ($\theta_n$, $\theta_0$)
+        \item Physical constants ($c = 340$ m/s for speed of sound)
+    \end{itemize}
+    \item Frequency range setup (20 Hz to 10 kHz)
+    \item Wave field calculations and normalization
+    \item Results visualization
+\end{itemize}
+
+\subsection{Wave Field Components}
+The program consists of several specialized functions for different aspects of the wave field calculations:
+
+\subsubsection{Direct Field Calculations}
+\begin{itemize}
+    \item \texttt{u\_d.m}: Direct wave field calculator
+    \item \texttt{u\_ss.m}: Source-source interaction computation
+    \item \texttt{u\_sd.m}: Source-diffraction interaction handler
+    \item \texttt{u\_ds.m}: Diffraction-source interaction computation
+    \item \texttt{u\_dsw.m}: Diffraction-source-wedge interaction calculator
+\end{itemize}
+
+\subsubsection{Mathematical Support Functions}
+\begin{itemize}
+    \item \texttt{A\_n.m}, \texttt{M\_n.m}: Coefficient calculations
+    \item \texttt{P\_l\_m.m}: Legendre polynomial implementations
+    \item \texttt{omega\_n.m}: Angular frequency calculations
+    \item \texttt{epsy\_n.m}, \texttt{epsy\_cap.m}: Phase calculations
+    \item \texttt{g\_small.m}, \texttt{h\_small.m}: Field calculation helper functions
+\end{itemize}
+
+\section{Program Flow}
+The program follows a systematic approach to compute acoustic fields:
+
+\subsection{Initialization Phase}
+\begin{enumerate}
+    \item Global parameter setup
+    \item Geometric configuration definition
+    \item Material properties initialization
+\end{enumerate}
+
+\subsection{Computation Phase}
+\begin{enumerate}
+    \item Frequency range iteration (20 Hz - 10 kHz)
+    \item Wave number calculation per frequency
+    \item Field computations:
+    \begin{itemize}
+        \item Normal incidence field
+        \item Direct field
+        \item Scattered field components
+        \item Field combination
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Output Phase}
+\begin{enumerate}
+    \item Results normalization
+    \item Frequency response plotting
+\end{enumerate}
+
+\section{Mathematical Foundation}
+The program implements complex acoustic theory including:
+
+\subsection{Wave Propagation}
+The wave equation in cylindrical coordinates:
+\begin{equation}
+    \nabla^2\Phi + k^2\Phi = 0
+\end{equation}
+where $k$ is the wave number and $\Phi$ is the velocity potential.
+
+\subsection{Scattered Field}
+The total field is composed of incident and scattered components:
+\begin{equation}
+    \Phi_{\text{total}} = \Phi_{\text{incident}} + \Phi_{\text{scattered}}
+\end{equation}
+
+\subsection{Impedance Boundary Conditions}
+At the wedge surface:
+\begin{equation}
+    \frac{\partial \Phi}{\partial n} + \beta\Phi = 0
+\end{equation}
+where $\beta$ is the surface admittance and $n$ is the normal direction.
+
+\section{Usage Instructions}
+To use the program:
+
+\begin{enumerate}
+    \item Ensure all MATLAB files are in the same directory
+    \item Execute \texttt{testscipt.m}
+    \item Review the generated plots showing field ratio vs. frequency
+\end{enumerate}
+
+\section{Code Structure}
+Example of the main calculation loop:
+
+\begin{lstlisting}[style=matlab]
+for index = 1:length(f)
+    k = 2*pi*f(index)/c;
+    normal_quin(index) = exp(-1j*k*r_)/sqrt(k*r_);
+    A = u_sw_t();
+    if ((isnan(real(A))||(isnan(imag(A))))
+        A = 0;
+    end
+    total_feild(index) = u_d() + A;
+end
+\end{lstlisting}
+
+\section{Conclusion}
+This implementation provides a comprehensive solution for analyzing acoustic behavior around wedge-shaped structures. It combines theoretical acoustic models with numerical methods to provide accurate simulations of wave propagation and interaction phenomena.
+
+\end{document}

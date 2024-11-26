@@ -1,0 +1,33 @@
+# MATLAB specific
+*.asv
+*.m~
+*.mex*
+*.mat
+slprj/
+sccprj/
+codegen/
+
+# LaTeX specific
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor specific
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Results and temporary files
+results/*.png
+results/*.fig
+*.tmp
