@@ -11,8 +11,9 @@ This project implements acoustic wave field calculations for wedge impedance ana
 ```
 .
 ├── README.md                   # Project documentation
-├── documentation.tex          # LaTeX documentation
-├── documentation.pdf         # Compiled documentation
+├── docs/                      # Documentation files
+│   ├── documentation.tex     # LaTeX source
+│   └── documentation.pdf    # Compiled documentation
 ├── src/                     # Source code
 │   ├── main/               # Main implementation files
 │   └── utils/              # Utility functions
