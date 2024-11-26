@@ -1,4 +1,4 @@
-\contentsline {section}{\numberline {1}Overview}{2}{section.1}%
+\contentsline {section}{\numberline {1}Overview}{1}{section.1}%
 \contentsline {section}{\numberline {2}Key Components}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Main Control Script (testscipt.m)}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Wave Field Components}{2}{subsection.2.2}%
@@ -13,5 +13,4 @@
 \contentsline {subsection}{\numberline {4.2}Scattered Field}{4}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Impedance Boundary Conditions}{4}{subsection.4.3}%
 \contentsline {section}{\numberline {5}Usage Instructions}{4}{section.5}%
-\contentsline {section}{\numberline {6}Code Structure}{4}{section.6}%
-\contentsline {section}{\numberline {7}Conclusion}{5}{section.7}%
+\contentsline {section}{\numberline {6}Conclusion}{4}{section.6}%

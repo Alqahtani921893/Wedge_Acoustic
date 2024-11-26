@@ -149,20 +149,20 @@ To use the program:
     \item Review the generated plots showing field ratio vs. frequency
 \end{enumerate}
 
-\section{Code Structure}
-Example of the main calculation loop:
+%\section{Code Structure}
+%Example of the main calculation loop:
 
-\begin{lstlisting}[style=matlab]
-for index = 1:length(f)
-    k = 2*pi*f(index)/c;
-    normal_quin(index) = exp(-1j*k*r_)/sqrt(k*r_);
-    A = u_sw_t();
-    if ((isnan(real(A))||(isnan(imag(A))))
-        A = 0;
-    end
-    total_feild(index) = u_d() + A;
-end
-\end{lstlisting}
+%\begin{lstlisting}[style=matlab]
+%for index = 1:length(f)
+%    k = 2*pi*f(index)/c;
+%    normal_quin(index) = exp(-1j*k*r_)/sqrt(k*r_);
+%    A = u_sw_t();
+%    if ((isnan(real(A))||(isnan(imag(A))))
+%        A = 0;
+%    end
+%    total_feild(index) = u_d() + A;
+%end
+%\end{lstlisting}
 
 \section{Conclusion}
 This implementation provides a comprehensive solution for analyzing acoustic behavior around wedge-shaped structures. It combines theoretical acoustic models with numerical methods to provide accurate simulations of wave propagation and interaction phenomena.
